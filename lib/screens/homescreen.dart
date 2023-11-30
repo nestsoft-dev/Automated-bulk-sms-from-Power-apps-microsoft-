@@ -12,6 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final _senderName =  TextEditingController();
   final _message =  TextEditingController();
   final _from =  TextEditingController();
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +60,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),),
               SizedBox(height: 15,),
 
-          GestureDetector(
+        isLoading?const Center(child: CircularProgressIndicator(color: Colors.blue,),):  GestureDetector(
             onTap: (){
-
+              if(_number.text.isEmpty||_senderName.text.isEmpty||_from.text.isEmpty||_message.text.isEmpty){
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Input Needed')));
+                return;
+              }
             },
             child: Container(
               height: 50,width:200,
@@ -76,3 +80,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+/*
+* echo "# Automated-bulk-sms-from-Power-apps-microsoft-" >> README.md
+  git init
+  git add README.md
+  git commit -m "first commit"
+  git branch -M main
+  git remote add origin https://github.com/nestsoft-dev/Automated-bulk-sms-from-Power-apps-microsoft-.git
+  git push -u origin main*/
